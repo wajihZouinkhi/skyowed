@@ -1,0 +1,72 @@
+[
+  {
+    "iata": "LH",
+    "name": "Lufthansa",
+    "country": "DE",
+    "claims_email": "customer.relations@lufthansa.com",
+    "online_claim_url": "https://www.lufthansa.com/feedback"
+  },
+  {
+    "iata": "AF",
+    "name": "Air France",
+    "country": "FR",
+    "claims_email": null,
+    "online_claim_url": "https://wwws.airfrance.fr/contact"
+  },
+  {
+    "iata": "KL",
+    "name": "KLM",
+    "country": "NL",
+    "claims_email": null,
+    "online_claim_url": "https://www.klm.com/travel/gb_en/customer_support"
+  },
+  {
+    "iata": "BA",
+    "name": "British Airways",
+    "country": "GB",
+    "claims_email": null,
+    "online_claim_url": "https://www.britishairways.com/travel/compensation-and-expenses-claim"
+  },
+  {
+    "iata": "FR",
+    "name": "Ryanair",
+    "country": "IE",
+    "claims_email": null,
+    "online_claim_url": "https://eucomplaintform.ryanair.com"
+  },
+  {
+    "iata": "U2",
+    "name": "easyJet",
+    "country": "GB",
+    "claims_email": null,
+    "online_claim_url": "https://www.easyjet.com/en/claim"
+  },
+  {
+    "iata": "W6",
+    "name": "Wizz Air",
+    "country": "HU",
+    "claims_email": null,
+    "online_claim_url": "https://wizzair.com/en-gb/information-and-services/customer-service"
+  },
+  {
+    "iata": "IB",
+    "name": "Iberia",
+    "country": "ES",
+    "claims_email": null,
+    "online_claim_url": "https://grupo.iberia.com/en/contact"
+  },
+  {
+    "iata": "QF",
+    "name": "Qantas",
+    "country": "AU",
+    "claims_email": null,
+    "online_claim_url": "https://www.qantas.com/au/en/support/contact-us"
+  },
+  {
+    "iata": "AA",
+    "name": "American Airlines",
+    "country": "US",
+    "claims_email": null,
+    "online_claim_url": "https://www.aa.com/i18n/customer-service/contact-american/refund-request.jsp"
+  }
+]
