@@ -7,17 +7,28 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test --import tsx src/lib/*.test.ts"
+    "test": "node --test --import tsx src/lib/*.test.ts",
+    "cap:sync": "next build && npx cap sync",
+    "cap:ios": "next build && npx cap sync ios && npx cap open ios",
+    "cap:android": "next build && npx cap sync android && npx cap open android"
   },
   "dependencies": {
     "next": "14.2.15",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/haptics": "^6.0.2",
+    "@capacitor/splash-screen": "^6.0.2",
+    "@capacitor/status-bar": "^6.0.2"
   },
   "devDependencies": {
     "@types/node": "20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "@capacitor/cli": "^6.1.2",
     "autoprefixer": "10.4.19",
     "postcss": "8.4.39",
     "tailwindcss": "3.4.6",
