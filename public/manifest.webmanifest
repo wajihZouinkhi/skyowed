@@ -1,0 +1,16 @@
+{
+  "name": "SkyOwed — Flight compensation",
+  "short_name": "SkyOwed",
+  "description": "Instant EU261 & UK261 compensation check.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05060a",
+  "theme_color": "#05060a",
+  "categories": ["travel", "utilities", "finance"],
+  "icons": [
+    { "src": "/icon", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/apple-icon", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

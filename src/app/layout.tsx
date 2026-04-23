@@ -4,10 +4,12 @@ import { ThemeProvider } from '@/lib/store';
 import NativeBridge from '@/components/NativeBridge';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://skyowed.app'),
   title: 'SkyOwed — Know what your delayed flight owes you',
   description:
     'Instant EU261 & UK261 compensation check. Up to €600 / £520 for eligible delays, cancellations and denied boarding.',
   applicationName: 'SkyOwed',
+  manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     title: 'SkyOwed',
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
     title: 'SkyOwed — EU261/UK261 flight compensation',
     description: 'Check in 30 seconds. Keep 100% of your claim.',
     type: 'website',
+    siteName: 'SkyOwed',
   },
   twitter: {
     card: 'summary_large_image',

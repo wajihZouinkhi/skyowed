@@ -1,6 +1,7 @@
 'use client';
 import CheckForm from '@/components/CheckForm';
 import ThemeToggle from '@/components/ThemeToggle';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -112,12 +113,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative z-10 py-10" style={{borderTop: '1px solid var(--border)'}}>
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 text-xs md:flex-row" style={{color: 'var(--fg-muted)'}}>
-          <div>© 2026 SkyOwed. Not legal advice.</div>
-          <div className="flex gap-5"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
