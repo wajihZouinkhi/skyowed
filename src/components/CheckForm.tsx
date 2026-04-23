@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ResultCard from './ResultCard';
+import AirportCombobox from './AirportCombobox';
 
 type Reason = 'delay' | 'cancellation' | 'denied_boarding';
 
@@ -26,9 +27,14 @@ export default function CheckForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || 'Check failed');
       setResult(data);
+      setTimeout(() => {
+        document.getElementById('result-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50);
     } catch (e: any) { setErr(e.message); }
     finally { setLoading(false); }
   }
+
+  function swap() { const a = depart; setDepart(arrive); setArrive(a); }
 
   return (
     <div className="glass rounded-3xl p-6 md:p-8 shadow-2xl shadow-violet-500/10">
@@ -41,15 +47,12 @@ export default function CheckForm() {
       </div>
 
       <form onSubmit={submit} className="space-y-5">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <label className="label">From (IATA)</label>
-            <input className="field uppercase" maxLength={3} value={depart} onChange={(e) => setDepart(e.target.value.toUpperCase())} placeholder="CDG" />
-          </div>
-          <div>
-            <label className="label">To (IATA)</label>
-            <input className="field uppercase" maxLength={3} value={arrive} onChange={(e) => setArrive(e.target.value.toUpperCase())} placeholder="JFK" />
-          </div>
+        <div className="relative grid gap-4 md:grid-cols-2">
+          <AirportCombobox label="From" value={depart} onChange={setDepart} />
+          <AirportCombobox label="To" value={arrive} onChange={setArrive} />
+          <button type="button" onClick={swap} aria-label="Swap airports" className="absolute left-1/2 top-[38px] hidden -translate-x-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0b0d14] p-2 text-white/60 shadow-lg hover:text-white md:flex">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3"/></svg>
+          </button>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -75,14 +78,17 @@ export default function CheckForm() {
         </label>
 
         <button type="submit" disabled={loading} className="btn-primary w-full">
-          {loading ? 'Checking…' : 'Check my compensation'}
+          {loading ? (
+            <span className="flex items-center gap-2"><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></span> Checking…</span>
+          ) : 'Check my compensation'}
         </button>
 
         {err && <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300">{err}</div>}
       </form>
 
+      <div id="result-anchor" />
       {result && (
-        <div className="mt-6">
+        <div className="mt-6 animate-[fadeUp_0.5s_ease-out]">
           <ResultCard result={result} />
         </div>
       )}
