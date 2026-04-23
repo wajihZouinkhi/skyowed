@@ -1,7 +1,1 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  trailingSlash: true,
-};
-export default nextConfig;
+LyoqIEB0eXBlIHtpbXBvcnQoJ25leHQnKS5OZXh0Q29uZmlnfSAqLwpjb25zdCBpc01vYmlsZSA9IHByb2Nlc3MuZW52LkJVSUxEX1RBUkdFVCA9PT0gJ21vYmlsZSc7CmNvbnN0IG5leHRDb25maWcgPSB7CiAgcmVhY3RTdHJpY3RNb2RlOiB0cnVlLAogIC4uLihpc01vYmlsZSA/IHsgb3V0cHV0OiAnZXhwb3J0JywgaW1hZ2VzOiB7IHVub3B0aW1pemVkOiB0cnVlIH0sIHRyYWlsaW5nU2xhc2g6IHRydWUgfSA6IHt9KSwKfTsKZXhwb3J0IGRlZmF1bHQgbmV4dENvbmZpZzsK
