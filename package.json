@@ -6,33 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "node --test --import tsx src/lib/*.test.ts",
-    "cap:sync": "next build && npx cap sync",
-    "cap:ios": "next build && npx cap sync ios && npx cap open ios",
-    "cap:android": "next build && npx cap sync android && npx cap open android"
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.2.15",
+    "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "@capacitor/core": "^6.1.2",
-    "@capacitor/ios": "^6.1.2",
-    "@capacitor/android": "^6.1.2",
-    "@capacitor/app": "^6.0.2",
-    "@capacitor/haptics": "^6.0.2",
-    "@capacitor/splash-screen": "^6.0.2",
-    "@capacitor/status-bar": "^6.0.2"
+    "@react-pdf/renderer": "^3.4.4",
+    "@supabase/supabase-js": "^2.45.0",
+    "stripe": "^15.12.0",
+    "e2b": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.14.10",
+    "typescript": "5.4.5",
+    "@types/node": "20.12.12",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "@capacitor/cli": "^6.1.2",
+    "tailwindcss": "3.4.4",
+    "postcss": "8.4.38",
     "autoprefixer": "10.4.19",
-    "postcss": "8.4.39",
-    "tailwindcss": "3.4.6",
-    "tsx": "4.19.0",
-    "typescript": "5.5.3"
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5"
   }
 }
