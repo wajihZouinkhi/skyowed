@@ -1,1 +1,15 @@
-IyBDb250cmlidXRpbmcKCjEuIEZvcmsgdGhlIHJlcG8gYW5kIGNsb25lLgoyLiBgbnBtIGluc3RhbGxgCjMuIGBucG0gcnVuIGRldmAg4oCUIGh0dHA6Ly9sb2NhbGhvc3Q6MzAwMAo0LiBgbnBtIHJ1biBidWlsZGAg4oCUIHByb2R1Y3Rpb24gYnVpbGQKNS4gYG5wbSB0ZXN0YCDigJQgZWxpZ2liaWxpdHkgdW5pdCB0ZXN0cwo2LiBgbnBtIHJ1biBidWlsZDptb2JpbGVgIOKAlCBzdGF0aWMgZXhwb3J0IGZvciBDYXBhY2l0b3IKNy4gT3BlbiBhIFBSIGFnYWluc3QgYG1haW5gLiBLZWVwIGNvbW1pdHMgc21hbGwgYW5kIGNvbnZlbnRpb25hbCAoYGZlYXQ6YCwgYGZpeDpgLCBgZG9jczpgKS4KCiMjIENvZGUgc3R5bGUKLSBUeXBlU2NyaXB0IHN0cmljdCBtb2RlLgotIFRhaWx3aW5kIGZvciBzdHlsaW5nOyBubyBpbmxpbmUgc3R5bGVzIGV4Y2VwdCBwb3NpdGlvbmFsIG9yYnMgaW4gYHBhZ2UudHN4YC4KLSBBbGwgbmV3IHBhZ2VzIGdvIHVuZGVyIGBzcmMvYXBwLzxyb3V0ZT4vcGFnZS50c3hgLgotIEFsbCBuZXcgQVBJIHJvdXRlcyBnbyB1bmRlciBgc3JjL2FwcC9hcGkvPG5hbWU+L3JvdXRlLnRzYCB3aXRoIGBleHBvcnQgY29uc3QgcnVudGltZSA9ICdub2RlanMnYC4K
+# Contributing
+
+1. Fork the repo and clone.
+2. `npm install`
+3. `npm run dev` — http://localhost:3000
+4. `npm run build` — production build
+5. `npm test` — eligibility unit tests
+6. `npm run build:mobile` — static export for Capacitor
+7. Open a PR against `main`. Keep commits small and conventional (`feat:`, `fix:`, `docs:`).
+
+## Code style
+- TypeScript strict mode.
+- Tailwind for styling; no inline styles except positional orbs in `page.tsx`.
+- All new pages go under `src/app/<route>/page.tsx`.
+- All new API routes go under `src/app/api/<name>/route.ts` with `export const runtime = 'nodejs'`.
