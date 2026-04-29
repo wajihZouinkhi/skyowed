@@ -1,1 +1,27 @@
-ZXhwb3J0IGNvbnN0IG1ldGFkYXRhID0geyB0aXRsZTogJ0Fib3V0IOKAlCBTa3lPd2VkJyB9OwpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBBYm91dFBhZ2UoKSB7CiAgcmV0dXJuICgKICAgIDxtYWluIGNsYXNzTmFtZT0ibXgtYXV0byBtYXgtdy0zeGwgcHgtNiBweS0xNiBwcm9zZSBwcm9zZS1pbnZlcnQiPgogICAgICA8aDE+QWJvdXQgU2t5T3dlZDwvaDE+CiAgICAgIDxwPgogICAgICAgIFNreU93ZWQgaXMgYSB0aW55IHRvb2wgdGhhdCB0ZWxscyB5b3UsIGluIDMwIHNlY29uZHMsIHdoZXRoZXIgYW4gYWlybGluZSBvd2VzIHlvdQogICAgICAgIGNvbXBlbnNhdGlvbiB1bmRlciBFVTI2MSBvciBVSzI2MSwgYW5kIGdlbmVyYXRlcyBhIHJlYWR5LXRvLXNlbmQgY2xhaW0gbGV0dGVyIGZvcgogICAgICAgIGEgb25lLXRpbWUgZmVlIG9mIOKCrDYuOTkuIFlvdSBrZWVwIDEwMCUgb2YgdGhlIGNvbXBlbnNhdGlvbiDigJQgd2UgbmV2ZXIgdGFrZSBhIGN1dC4KICAgICAgPC9wPgogICAgICA8aDI+V2h5IHdlIGJ1aWx0IGl0PC9oMj4KICAgICAgPHA+CiAgICAgICAgTW9zdCAmcXVvdDtjbGFpbSBhZ2VuY2llcyZxdW90OyB0YWtlIDI1LTUwJSBvZiB5b3VyIGNvbXBlbnNhdGlvbi4gRm9yIGEg4oKsNjAwIHBheW91dCwgdGhhdCBpcwogICAgICAgIOKCrDE1MC3igqwzMDAuIFNreU93ZWQgcmVwbGFjZXMgdGhlbSB3aXRoIGEgY2FsY3VsYXRvciBhbmQgYSB0ZW1wbGF0ZSDigJQgdGhlIGFpcmxpbmUKICAgICAgICBwYXlzIHlvdSBkaXJlY3RseS4KICAgICAgPC9wPgogICAgICA8aDI+V2hhdCB3ZSBhcmUgbm90PC9oMj4KICAgICAgPHVsPgogICAgICAgIDxsaT5XZSBhcmUgbm90IGEgbGF3IGZpcm0gYW5kIHdlIGRvIG5vdCBnaXZlIGxlZ2FsIGFkdmljZS48L2xpPgogICAgICAgIDxsaT5XZSBkbyBub3QgY29udGFjdCBhaXJsaW5lcyBvbiB5b3VyIGJlaGFsZi48L2xpPgogICAgICAgIDxsaT5XZSBkbyBub3QgdGFrZSBhIHN1Y2Nlc3MgZmVlLjwvbGk+CiAgICAgIDwvdWw+CiAgICAgIDxoMj5Db250YWN0PC9oMj4KICAgICAgPHA+aGVsbG9Ac2t5b3dlZC5hcHA8L3A+CiAgICA8L21haW4+CiAgKTsKfQo=
+export const metadata = { title: 'About — SkyOwed' };
+export default function AboutPage() {
+  return (
+    <main className="mx-auto max-w-3xl px-6 py-16 prose prose-invert">
+      <h1>About SkyOwed</h1>
+      <p>
+        SkyOwed is a tiny tool that tells you, in 30 seconds, whether an airline owes you
+        compensation under EU261 or UK261, and generates a ready-to-send claim letter for
+        a one-time fee of €6.99. You keep 100% of the compensation — we never take a cut.
+      </p>
+      <h2>Why we built it</h2>
+      <p>
+        Most &quot;claim agencies&quot; take 25-50% of your compensation. For a €600 payout, that is
+        €150-€300. SkyOwed replaces them with a calculator and a template — the airline
+        pays you directly.
+      </p>
+      <h2>What we are not</h2>
+      <ul>
+        <li>We are not a law firm and we do not give legal advice.</li>
+        <li>We do not contact airlines on your behalf.</li>
+        <li>We do not take a success fee.</li>
+      </ul>
+      <h2>Contact</h2>
+      <p>hello@skyowed.app</p>
+    </main>
+  );
+}

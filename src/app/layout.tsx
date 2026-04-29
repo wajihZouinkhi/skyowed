@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/lib/store';
 import NativeBridge from '@/components/NativeBridge';
+import BackButtonHandler from '@/components/BackButtonHandler';
+import OfflineBanner from '@/components/OfflineBanner';
+import BottomTabs from '@/components/BottomTabs';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://skyowed.app'),
@@ -34,7 +37,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  userScalable: false,
+  userScalable: true,
   themeColor: [
     { media: '(prefers-color-scheme: dark)', color: '#05060a' },
     { media: '(prefers-color-scheme: light)', color: '#f6f7fb' },
@@ -47,6 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <NativeBridge />
+          <BackButtonHandler />
+          <OfflineBanner />
+          <BottomTabs />
           {children}
         </ThemeProvider>
       </body>

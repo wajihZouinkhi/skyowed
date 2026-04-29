@@ -1,1 +1,32 @@
-aW1wb3J0IHR5cGUgeyBGQyB9IGZyb20gJ3JlYWN0JzsKCmV4cG9ydCBpbnRlcmZhY2UgQ2xhaW1Sb3cgewogIGlkOiBzdHJpbmc7CiAgZmxpZ2h0TnVtYmVyOiBzdHJpbmc7CiAgcm91dGU6IHN0cmluZzsKICBkYXRlOiBzdHJpbmc7CiAgYW1vdW50RXVyOiBudW1iZXI7CiAgc3RhdHVzOiBzdHJpbmc7Cn0KCmV4cG9ydCBjb25zdCBDbGFpbXNMaXN0OiBGQzx7IGNsYWltczogQ2xhaW1Sb3dbXSB9PiA9ICh7IGNsYWltcyB9KSA9PiB7CiAgaWYgKGNsYWltcy5sZW5ndGggPT09IDApIHsKICAgIHJldHVybiA8cCBjbGFzc05hbWU9InRleHQtc2xhdGUtNTAwIj5ObyBjbGFpbXMgeWV0LjwvcD47CiAgfQogIHJldHVybiAoCiAgICA8dWwgY2xhc3NOYW1lPSJkaXZpZGUteSI+CiAgICAgIHtjbGFpbXMubWFwKGMgPT4gKAogICAgICAgIDxsaSBrZXk9e2MuaWR9IGNsYXNzTmFtZT0icHktMyBmbGV4IGp1c3RpZnktYmV0d2VlbiI+CiAgICAgICAgICA8ZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZm9udC1zZW1pYm9sZCI+e2MuZmxpZ2h0TnVtYmVyfSDigJQge2Mucm91dGV9PC9kaXY+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtc2xhdGUtNTAwIj57Yy5kYXRlfTwvZGl2PgogICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0idGV4dC1yaWdodCI+CiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmb250LWJvbGQiPuKCrHtjLmFtb3VudEV1cn08L2Rpdj4KICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJ0ZXh0LXhzIHVwcGVyY2FzZSB0ZXh0LXNsYXRlLTUwMCI+e2Muc3RhdHVzfTwvc3Bhbj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvbGk+CiAgICAgICkpfQogICAgPC91bD4KICApOwp9Owo=
+import type { FC } from 'react';
+
+export interface ClaimRow {
+  id: string;
+  flightNumber: string;
+  route: string;
+  date: string;
+  amountEur: number;
+  status: string;
+}
+
+export const ClaimsList: FC<{ claims: ClaimRow[] }> = ({ claims }) => {
+  if (claims.length === 0) {
+    return <p className="text-slate-500">No claims yet.</p>;
+  }
+  return (
+    <ul className="divide-y">
+      {claims.map(c => (
+        <li key={c.id} className="py-3 flex justify-between">
+          <div>
+            <div className="font-semibold">{c.flightNumber} — {c.route}</div>
+            <div className="text-sm text-slate-500">{c.date}</div>
+          </div>
+          <div className="text-right">
+            <div className="font-bold">€{c.amountEur}</div>
+            <span className="text-xs uppercase text-slate-500">{c.status}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};

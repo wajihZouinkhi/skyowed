@@ -1,1 +1,20 @@
-aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAnbmV4dC9zZXJ2ZXInOwppbXBvcnQgeyBjaGVja0VsaWdpYmlsaXR5IH0gZnJvbSAnQC9saWIvZWxpZ2liaWxpdHknOwppbXBvcnQgeyBidWlsZExldHRlciwgdHlwZSBMZXR0ZXJJbnB1dCB9IGZyb20gJ0AvbGliL2xldHRlcic7CgpleHBvcnQgY29uc3QgcnVudGltZSA9ICdub2RlanMnOwoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBPU1QocmVxOiBSZXF1ZXN0KSB7CiAgdHJ5IHsKICAgIGNvbnN0IGJvZHkgPSAoYXdhaXQgcmVxLmpzb24oKSkgYXMgTGV0dGVySW5wdXQgJiBQYXJhbWV0ZXJzPHR5cGVvZiBjaGVja0VsaWdpYmlsaXR5PlswXTsKICAgIGNvbnN0IHJlc3VsdCA9IGNoZWNrRWxpZ2liaWxpdHkoYm9keSk7CiAgICBpZiAoIXJlc3VsdC5lbGlnaWJsZSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6IHJlc3VsdC5yZWFzb24gfSwgeyBzdGF0dXM6IDQyMiB9KTsKICAgIGNvbnN0IHRleHQgPSBidWlsZExldHRlcihib2R5LCByZXN1bHQpOwogICAgcmV0dXJuIG5ldyBOZXh0UmVzcG9uc2UodGV4dCwgewogICAgICBzdGF0dXM6IDIwMCwKICAgICAgaGVhZGVyczogeyAnY29udGVudC10eXBlJzogJ3RleHQvcGxhaW47IGNoYXJzZXQ9dXRmLTgnLCAnY29udGVudC1kaXNwb3NpdGlvbic6IGBhdHRhY2htZW50OyBmaWxlbmFtZT0ic2t5b3dlZC1jbGFpbS0ke2JvZHkuZmxpZ2h0TnVtYmVyfS50eHQiYCB9LAogICAgfSk7CiAgfSBjYXRjaCAoZTogYW55KSB7CiAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogZT8ubWVzc2FnZSA/PyAnQmFkIHJlcXVlc3QnIH0sIHsgc3RhdHVzOiA0MDAgfSk7CiAgfQp9Cg==
+import { NextResponse } from 'next/server';
+import { checkEligibility } from '@/lib/eligibility';
+import { buildLetter, type LetterInput } from '@/lib/letter';
+
+export const runtime = 'nodejs';
+
+export async function POST(req: Request) {
+  try {
+    const body = (await req.json()) as LetterInput & Parameters<typeof checkEligibility>[0];
+    const result = checkEligibility(body);
+    if (!result.eligible) return NextResponse.json({ error: result.reason }, { status: 422 });
+    const text = buildLetter(body, result);
+    return new NextResponse(text, {
+      status: 200,
+      headers: { 'content-type': 'text/plain; charset=utf-8', 'content-disposition': `attachment; filename="skyowed-claim-${body.flightNumber}.txt"` },
+    });
+  } catch (e: any) {
+    return NextResponse.json({ error: e?.message ?? 'Bad request' }, { status: 400 });
+  }
+}

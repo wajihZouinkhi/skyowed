@@ -10,7 +10,7 @@ export default function NativeBridge() {
     (async () => {
       if (await isNative()) {
         await applyStatusBarTheme(theme);
-        setTimeout(() => { hideSplash(); }, 50);
+        setTimeout(() => { hideSplash(); }, 1200);
       }
     })();
   }, []);

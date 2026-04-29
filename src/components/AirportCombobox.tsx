@@ -60,6 +60,10 @@ export default function AirportCombobox({ label, value, onChange, placeholder }:
         className="field"
         value={displayValue}
         placeholder={placeholder || 'Search city or IATA'}
+        autoCapitalize="characters"
+        autoCorrect="off"
+        spellCheck={false}
+        enterKeyHint="next"
         onFocus={() => { setOpen(true); setQuery(''); }}
         onChange={(e) => { setQuery(e.target.value); setOpen(true); setHighlight(0); }}
         onKeyDown={(e) => {

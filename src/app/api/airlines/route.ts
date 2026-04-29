@@ -1,1 +1,16 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgQUlSTElORVMsIHNlYXJjaEFpcmxpbmVzLCBmaW5kQWlybGluZSB9IGZyb20gJ0AvbGliL2FpcmxpbmVzJzsKCmV4cG9ydCBjb25zdCBydW50aW1lID0gJ2VkZ2UnOwoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIEdFVChyZXE6IE5leHRSZXF1ZXN0KSB7CiAgY29uc3QgeyBzZWFyY2hQYXJhbXMgfSA9IG5ldyBVUkwocmVxLnVybCk7CiAgY29uc3QgcSA9IHNlYXJjaFBhcmFtcy5nZXQoJ3EnKTsKICBjb25zdCBpYXRhID0gc2VhcmNoUGFyYW1zLmdldCgnaWF0YScpOwogIGlmIChpYXRhKSB7CiAgICBjb25zdCBhID0gZmluZEFpcmxpbmUoaWF0YSk7CiAgICByZXR1cm4gYSA/IE5leHRSZXNwb25zZS5qc29uKGEpIDogTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogJ25vdF9mb3VuZCcgfSwgeyBzdGF0dXM6IDQwNCB9KTsKICB9CiAgY29uc3QgcmVzdWx0cyA9IHEgPyBzZWFyY2hBaXJsaW5lcyhxKSA6IEFJUkxJTkVTOwogIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGNvdW50OiByZXN1bHRzLmxlbmd0aCwgYWlybGluZXM6IHJlc3VsdHMgfSk7Cn0K
+import { NextRequest, NextResponse } from 'next/server';
+import { AIRLINES, searchAirlines, findAirline } from '@/lib/airlines';
+
+export const runtime = 'edge';
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get('q');
+  const iata = searchParams.get('iata');
+  if (iata) {
+    const a = findAirline(iata);
+    return a ? NextResponse.json(a) : NextResponse.json({ error: 'not_found' }, { status: 404 });
+  }
+  const results = q ? searchAirlines(q) : AIRLINES;
+  return NextResponse.json({ count: results.length, airlines: results });
+}

@@ -1,1 +1,32 @@
-J3VzZSBjbGllbnQnOwppbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JzsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFRyYWNrKCkgewogIGNvbnN0IFtpZCwgc2V0SWRdID0gdXNlU3RhdGUoJycpOwogIGNvbnN0IFtjbGFpbSwgc2V0Q2xhaW1dID0gdXNlU3RhdGU8UmVjb3JkPHN0cmluZywgdW5rbm93bj4gfCBudWxsPihudWxsKTsKICBjb25zdCBbZXJyLCBzZXRFcnJdID0gdXNlU3RhdGU8c3RyaW5nIHwgbnVsbD4obnVsbCk7CgogIGFzeW5jIGZ1bmN0aW9uIGdvKCkgewogICAgc2V0RXJyKG51bGwpOyBzZXRDbGFpbShudWxsKTsKICAgIGNvbnN0IHIgPSBhd2FpdCBmZXRjaChgL2FwaS9jbGFpbXMvJHtpZH1gKTsKICAgIGNvbnN0IGogPSBhd2FpdCByLmpzb24oKTsKICAgIGlmICghci5vaykgeyBzZXRFcnIoai5lcnJvciA/PyAnTm90IGZvdW5kJyk7IHJldHVybjsgfQogICAgc2V0Q2xhaW0oai5jbGFpbSk7CiAgfQoKICByZXR1cm4gKAogICAgPG1haW4gY2xhc3NOYW1lPSJteC1hdXRvIG1heC13LXhsIHB4LTQgcHktMTAiPgogICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LTN4bCBmb250LWJvbGQgbWItNiI+VHJhY2sgYSBjbGFpbTwvaDE+CiAgICAgIDxwIGNsYXNzTmFtZT0idGV4dC1zbGF0ZS02MDAgbWItNCI+RW50ZXIgdGhlIGNsYWltIElEIGZyb20geW91ciBjb25maXJtYXRpb24gZW1haWwuPC9wPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBnYXAtMiBtYi02Ij4KICAgICAgICA8aW5wdXQgdmFsdWU9e2lkfSBvbkNoYW5nZT17ZSA9PiBzZXRJZChlLnRhcmdldC52YWx1ZSl9IHBsYWNlaG9sZGVyPSJjbGFpbSBpZCIKICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJmbGV4LTEgcm91bmRlZCBib3JkZXIgcHgtMyBweS0yIiAvPgogICAgICAgIDxidXR0b24gb25DbGljaz17Z299IGNsYXNzTmFtZT0icm91bmRlZCBiZy1za3ktNjAwIHB4LTQgcHktMiB0ZXh0LXdoaXRlIj5UcmFjazwvYnV0dG9uPgogICAgICA8L2Rpdj4KICAgICAge2VyciAmJiA8cCBjbGFzc05hbWU9InRleHQtcmVkLTYwMCI+e2Vycn08L3A+fQogICAgICB7Y2xhaW0gJiYgKAogICAgICAgIDxwcmUgY2xhc3NOYW1lPSJyb3VuZGVkIGJnLXNsYXRlLTUwIHAtNCB0ZXh0LXNtIG92ZXJmbG93LWF1dG8iPntKU09OLnN0cmluZ2lmeShjbGFpbSwgbnVsbCwgMil9PC9wcmU+CiAgICAgICl9CiAgICA8L21haW4+CiAgKTsKfQo=
+'use client';
+import { useState } from 'react';
+
+export default function Track() {
+  const [id, setId] = useState('');
+  const [claim, setClaim] = useState<Record<string, unknown> | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function go() {
+    setErr(null); setClaim(null);
+    const r = await fetch(`/api/claims/${id}`);
+    const j = await r.json();
+    if (!r.ok) { setErr(j.error ?? 'Not found'); return; }
+    setClaim(j.claim);
+  }
+
+  return (
+    <main className="mx-auto max-w-xl px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">Track a claim</h1>
+      <p className="text-slate-600 mb-4">Enter the claim ID from your confirmation email.</p>
+      <div className="flex gap-2 mb-6">
+        <input value={id} onChange={e => setId(e.target.value)} placeholder="claim id"
+               className="flex-1 rounded border px-3 py-2" />
+        <button onClick={go} className="rounded bg-sky-600 px-4 py-2 text-white">Track</button>
+      </div>
+      {err && <p className="text-red-600">{err}</p>}
+      {claim && (
+        <pre className="rounded bg-slate-50 p-4 text-sm overflow-auto">{JSON.stringify(claim, null, 2)}</pre>
+      )}
+    </main>
+  );
+}

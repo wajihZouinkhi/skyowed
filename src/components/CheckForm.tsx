@@ -2,36 +2,76 @@
 import { useState } from 'react';
 import ResultCard from './ResultCard';
 import AirportCombobox from './AirportCombobox';
+import { checkEligibility, type EligibilityResult, type EventType } from '@/lib/eligibility';
+import { saveLocalClaim } from '@/lib/localClaims';
+import { hapticLight, hapticSuccess, hapticError } from '@/lib/native';
+import { AIRPORTS } from '@/lib/airports';
 
-type Reason = 'delay' | 'cancellation' | 'denied_boarding';
+const REASON_MAP: Record<string, EventType> = {
+  delay: 'DELAYED',
+  cancellation: 'CANCELLED',
+  denied_boarding: 'DENIED_BOARDING',
+};
 
 export default function CheckForm() {
   const [depart, setDepart] = useState('CDG');
   const [arrive, setArrive] = useState('JFK');
+  const [flightDate, setFlightDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [delayHours, setDelayHours] = useState(4);
-  const [reason, setReason] = useState<Reason>('delay');
+  const [reason, setReason] = useState('delay');
   const [extraordinary, setExtraordinary] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<EligibilityResult | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    await hapticLight();
     setLoading(true); setErr(null); setResult(null);
     try {
-      const res = await fetch('/api/check', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ depart, arrive, delayHours: Number(delayHours), reason, extraordinary }),
+      const dep = AIRPORTS[depart.toUpperCase()];
+      const arr = AIRPORTS[arrive.toUpperCase()];
+      if (!dep) throw new Error(`Unknown departure airport: ${depart}`);
+      if (!arr) throw new Error(`Unknown arrival airport: ${arrive}`);
+
+      const data = checkEligibility({
+        depIata: depart.toUpperCase(),
+        arrIata: arrive.toUpperCase(),
+        airlineCountry: dep.country,
+        eventType: REASON_MAP[reason] || 'DELAYED',
+        flightDate,
+        arrivalDelayHours: Number(delayHours),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || 'Check failed');
+
+      if (data.eligible) await hapticSuccess();
+      else await hapticError();
+
       setResult(data);
+
+      if (data.eligible) {
+        await saveLocalClaim({
+          id: crypto.randomUUID(),
+          createdAt: new Date().toISOString(),
+          depIata: depart.toUpperCase(),
+          arrIata: arrive.toUpperCase(),
+          flightDate,
+          eventType: REASON_MAP[reason] || 'DELAYED',
+          eligible: true,
+          amount: data.amount,
+          currency: data.currency,
+          jurisdiction: data.jurisdiction,
+        });
+      }
+
       setTimeout(() => {
         document.getElementById('result-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 50);
-    } catch (e: any) { setErr(e.message); }
-    finally { setLoading(false); }
+    } catch (e: any) {
+      await hapticError();
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function swap() { const a = depart; setDepart(arrive); setArrive(a); }
@@ -55,14 +95,19 @@ export default function CheckForm() {
           </button>
         </div>
 
+        <div>
+          <label className="label">Flight date</label>
+          <input type="date" className="field" value={flightDate} onChange={(e) => setFlightDate(e.target.value)} enterKeyHint="next" />
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <label className="label">Arrival delay (hours)</label>
-            <input type="number" min={0} max={48} step={0.5} className="field" value={delayHours} onChange={(e) => setDelayHours(parseFloat(e.target.value || '0'))} />
+            <input type="number" min={0} max={48} step={0.5} inputMode="numeric" enterKeyHint="next" className="field" value={delayHours} onChange={(e) => setDelayHours(parseFloat(e.target.value || '0'))} />
           </div>
           <div>
             <label className="label">Reason</label>
-            <select className="field" value={reason} onChange={(e) => setReason(e.target.value as Reason)}>
+            <select className="field" value={reason} onChange={(e) => setReason(e.target.value)}>
               <option value="delay">Delay</option>
               <option value="cancellation">Cancellation</option>
               <option value="denied_boarding">Denied boarding</option>
@@ -89,7 +134,14 @@ export default function CheckForm() {
       <div id="result-anchor" />
       {result && (
         <div className="mt-6 animate-[fadeUp_0.5s_ease-out]">
-          <ResultCard result={result} />
+          <ResultCard
+            result={result}
+            depIata={depart.toUpperCase()}
+            arrIata={arrive.toUpperCase()}
+            flightDate={flightDate}
+            eventType={REASON_MAP[reason] || 'DELAYED'}
+            arrivalDelayHours={Number(delayHours)}
+          />
         </div>
       )}
     </div>

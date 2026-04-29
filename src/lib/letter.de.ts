@@ -1,1 +1,34 @@
-aW1wb3J0IHR5cGUgeyBDbGFpbUlucHV0IH0gZnJvbSAnLi9sZXR0ZXInOwoKZXhwb3J0IGZ1bmN0aW9uIHJlbmRlckxldHRlckRFKGlucHV0OiBDbGFpbUlucHV0KTogc3RyaW5nIHsKICBjb25zdCB7IHBhc3NlbmdlciwgYWlybGluZSwgZmxpZ2h0TnVtYmVyLCBkZXBhcnR1cmUsIGFycml2YWwsIGRhdGUsIGFtb3VudCwgYmFzaXMgfSA9IGlucHV0OwogIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKTsKICByZXR1cm4gWwogICAgcGFzc2VuZ2VyLmZ1bGxOYW1lLAogICAgcGFzc2VuZ2VyLmFkZHJlc3MsCiAgICAnJywKICAgIHRvZGF5LAogICAgJycsCiAgICBhaXJsaW5lLm5hbWUsCiAgICAnS3VuZGVuc2VydmljZSAvIEJlc2Nod2VyZGVuJywKICAgIGFpcmxpbmUuYWRkcmVzcywKICAgICcnLAogICAgYEJldHJlZmY6IEF1c2dsZWljaHNmb3JkZXJ1bmcg4oCUICR7YmFzaXN9IOKAlCBGbHVnICR7ZmxpZ2h0TnVtYmVyfSB2b20gJHtkYXRlfWAsCiAgICAnJywKICAgICdTZWhyIGdlZWhydGUgRGFtZW4gdW5kIEhlcnJlbiwnLAogICAgJycsCiAgICBgaWNoIHdhciBQYXNzYWdpZXIoaW4pIGF1ZiBGbHVnICR7ZmxpZ2h0TnVtYmVyfSB2b24gJHtkZXBhcnR1cmV9IG5hY2ggJHthcnJpdmFsfSBhbSAke2RhdGV9IChCdWNodW5nc251bW1lcjogJHtwYXNzZW5nZXIucG5yfSkuYCwKICAgICcnLAogICAgYEdlbcOkw58gJHtiYXNpcyA9PT0gJ1VLMjYxJyA/ICdVSzI2MScgOiAnVmVyb3JkbnVuZyAoRUcpIE5yLiAyNjEvMjAwNCd9IHN0ZWh0IG1pciBlaW5lIEF1c2dsZWljaHN6YWhsdW5nIGluIEjDtmhlIHZvbiAke2Ftb3VudH0gRVVSIHp1LmAsCiAgICAnJywKICAgIGBJY2ggZm9yZGVyZSBTaWUgYXVmLCBkaWVzZW4gQmV0cmFnIGJpbm5lbiAxNCBUYWdlbiBhdWYgZm9sZ2VuZGVzIEtvbnRvIHp1IMO8YmVyd2Vpc2VuOiAke3Bhc3Nlbmdlci5pYmFufS5gLAogICAgJycsCiAgICAnTmFjaCBGcmlzdGFibGF1ZiBiZWhhbHRlIGljaCBtaXIgcmVjaHRsaWNoZSBTY2hyaXR0ZSB2b3IuJywKICAgICcnLAogICAgJ01pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4nLAogICAgJycsCiAgICBwYXNzZW5nZXIuZnVsbE5hbWUsCiAgICAnJywKICAgICfigJQgQW5sYWdlbjogQm9yZGthcnRlLCBCdWNodW5nc2Jlc3TDpHRpZ3VuZy4nLAogIF0uam9pbignXG4nKTsKfQo=
+import type { ClaimInput } from './letter';
+
+export function renderLetterDE(input: ClaimInput): string {
+  const { passenger, airline, flightNumber, departure, arrival, date, amount, basis } = input;
+  const today = new Date().toISOString().slice(0, 10);
+  return [
+    passenger.fullName,
+    passenger.address,
+    '',
+    today,
+    '',
+    airline.name,
+    'Kundenservice / Beschwerden',
+    airline.address,
+    '',
+    `Betreff: Ausgleichsforderung — ${basis} — Flug ${flightNumber} vom ${date}`,
+    '',
+    'Sehr geehrte Damen und Herren,',
+    '',
+    `ich war Passagier(in) auf Flug ${flightNumber} von ${departure} nach ${arrival} am ${date} (Buchungsnummer: ${passenger.pnr}).`,
+    '',
+    `Gemäß ${basis === 'UK261' ? 'UK261' : 'Verordnung (EG) Nr. 261/2004'} steht mir eine Ausgleichszahlung in Höhe von ${amount} EUR zu.`,
+    '',
+    `Ich fordere Sie auf, diesen Betrag binnen 14 Tagen auf folgendes Konto zu überweisen: ${passenger.iban}.`,
+    '',
+    'Nach Fristablauf behalte ich mir rechtliche Schritte vor.',
+    '',
+    'Mit freundlichen Grüßen',
+    '',
+    passenger.fullName,
+    '',
+    '— Anlagen: Bordkarte, Buchungsbestätigung.',
+  ].join('\n');
+}

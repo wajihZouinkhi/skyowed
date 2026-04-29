@@ -1,1 +1,70 @@
-aW1wb3J0IHR5cGUgeyBFbGlnaWJpbGl0eVJlc3VsdCB9IGZyb20gJy4vZWxpZ2liaWxpdHknOwoKZXhwb3J0IHR5cGUgTGV0dGVySW5wdXQgPSB7CiAgcGFzc2VuZ2VyTmFtZTogc3RyaW5nOwogIHBhc3NlbmdlckFkZHJlc3M6IHN0cmluZzsKICBib29raW5nUmVmOiBzdHJpbmc7CiAgZmxpZ2h0TnVtYmVyOiBzdHJpbmc7CiAgZmxpZ2h0RGF0ZTogc3RyaW5nOwogIGRlcElhdGE6IHN0cmluZzsKICBhcnJJYXRhOiBzdHJpbmc7CiAgZXZlbnRUeXBlOiAnREVMQVlFRCcgfCAnQ0FOQ0VMTEVEJyB8ICdERU5JRURfQk9BUkRJTkcnOwogIGFycml2YWxEZWxheUhvdXJzPzogbnVtYmVyOwogIGFpcmxpbmVOYW1lOiBzdHJpbmc7CiAgYWlybGluZUFkZHJlc3M/OiBzdHJpbmc7CiAgaWJhbj86IHN0cmluZzsKICBsYW5nPzogJ2VuJyB8ICdmcicgfCAnZGUnIHwgJ2VzJzsKfTsKCmNvbnN0IFRFTVBMQVRFUzogUmVjb3JkPHN0cmluZywgKGk6IExldHRlcklucHV0LCByOiBFeHRyYWN0PEVsaWdpYmlsaXR5UmVzdWx0LHtlbGlnaWJsZTp0cnVlfT4pID0+IHN0cmluZz4gPSB7CiAgZW46IChpLCByKSA9PiBgVG86ICR7aS5haXJsaW5lTmFtZX0KJHtpLmFpcmxpbmVBZGRyZXNzID8/ICcnfQoKQ2xhaW0gZm9yIGNvbXBlbnNhdGlvbiB1bmRlciBSZWd1bGF0aW9uIChFQykgMjYxLzIwMDQgLyBVSyBSZWd1bGF0aW9uIDI2MQpQYXNzZW5nZXI6ICR7aS5wYXNzZW5nZXJOYW1lfQpBZGRyZXNzOiAke2kucGFzc2VuZ2VyQWRkcmVzc30KQm9va2luZyByZWZlcmVuY2U6ICR7aS5ib29raW5nUmVmfQpGbGlnaHQ6ICR7aS5mbGlnaHROdW1iZXJ9IG9uICR7aS5mbGlnaHREYXRlfQpSb3V0ZTogJHtpLmRlcElhdGF9IOKGkiAke2kuYXJySWF0YX0KCkRlYXIgU2lyIG9yIE1hZGFtLAoKSSBhbSB3cml0aW5nIHRvIGNsYWltIHRoZSBjb21wZW5zYXRpb24gSSBhbSBlbnRpdGxlZCB0byB1bmRlciAke3IuanVyaXNkaWN0aW9ufSBmb3IgdGhlIGFib3ZlIGZsaWdodCwgd2hpY2ggJHsKICBpLmV2ZW50VHlwZSA9PT0gJ0RFTEFZRUQnID8gYGFycml2ZWQgJHtpLmFycml2YWxEZWxheUhvdXJzfSBob3VycyBsYXRlIGF0IHRoZSBmaW5hbCBkZXN0aW5hdGlvbmAKICA6IGkuZXZlbnRUeXBlID09PSAnQ0FOQ0VMTEVEJyA/ICd3YXMgY2FuY2VsbGVkIHdpdGhvdXQgc3VmZmljaWVudCBub3RpY2UnCiAgOiAnb24gd2hpY2ggSSB3YXMgZGVuaWVkIGJvYXJkaW5nIGFnYWluc3QgbXkgd2lsbCcKfS4KCkZsaWdodCBkaXN0YW5jZSBpcyAke3IuZGlzdGFuY2VLbS50b0ZpeGVkKDApfSBrbSwgd2hpY2ggZW50aXRsZXMgbWUgdG8gJHtyLmN1cnJlbmN5fSAke3IuYW1vdW50fSBwZXIgcGFzc2VuZ2VyLgoKUGxlYXNlIHRyYW5zZmVyIHRoZSBhbW91bnQgdG8gdGhlIGZvbGxvd2luZyBhY2NvdW50IHdpdGhpbiAxNCBkYXlzOgpJQkFOOiAke2kuaWJhbiA/PyAnW0lCQU5dJ30KQWNjb3VudCBob2xkZXI6ICR7aS5wYXNzZW5nZXJOYW1lfQoKSWYgSSBkbyBub3QgcmVjZWl2ZSBmdWxsIHBheW1lbnQgd2l0aGluIDE0IGRheXMsIEkgd2lsbCBlc2NhbGF0ZSB0aGlzIGNsYWltIHRvIHRoZSBuYXRpb25hbCBlbmZvcmNlbWVudCBib2R5IGFuZCwgaWYgbmVjZXNzYXJ5LCB0YWtlIGNvdXJ0IGFjdGlvbi4gQWxsIGxlZ2FsIGNvc3RzIHdpbGwgYmUgYWRkZWQgdG8gdGhlIGNsYWltLgoKWW91cnMgZmFpdGhmdWxseSwKJHtpLnBhc3Nlbmdlck5hbWV9CkRhdGU6ICR7bmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNsaWNlKDAsMTApfQpgLAp9OwoKZXhwb3J0IGZ1bmN0aW9uIGJ1aWxkTGV0dGVyKGk6IExldHRlcklucHV0LCByOiBFeHRyYWN0PEVsaWdpYmlsaXR5UmVzdWx0LHtlbGlnaWJsZTp0cnVlfT4pOiBzdHJpbmcgewogIGNvbnN0IGZuID0gVEVNUExBVEVTW2kubGFuZyA/PyAnZW4nXSA/PyBURU1QTEFURVMuZW47CiAgcmV0dXJuIGZuKGksIHIpOwp9Cg==
+import type { EligibilityResult } from './eligibility';
+
+// ClaimInput is used by locale-specific letter renderers (letter.fr.ts, letter.de.ts, letter.es.ts)
+export type ClaimInput = {
+  passenger: { fullName: string; address: string; pnr: string; iban: string };
+  airline: { name: string; address?: string };
+  flightNumber: string;
+  departure: string;
+  arrival: string;
+  date: string;
+  amount: string | number;
+  basis: string;
+};
+
+export type LetterInput = {
+  passengerName: string;
+  passengerAddress: string;
+  bookingRef: string;
+  flightNumber: string;
+  flightDate: string;
+  depIata: string;
+  arrIata: string;
+  eventType: 'DELAYED' | 'CANCELLED' | 'DENIED_BOARDING';
+  arrivalDelayHours?: number;
+  airlineName: string;
+  airlineAddress?: string;
+  iban?: string;
+  lang?: 'en' | 'fr' | 'de' | 'es';
+};
+
+const TEMPLATES: Record<string, (i: LetterInput, r: Extract<EligibilityResult,{eligible:true}>) => string> = {
+  en: (i, r) => `To: ${i.airlineName}
+${i.airlineAddress ?? ''}
+
+Claim for compensation under Regulation (EC) 261/2004 / UK Regulation 261
+Passenger: ${i.passengerName}
+Address: ${i.passengerAddress}
+Booking reference: ${i.bookingRef}
+Flight: ${i.flightNumber} on ${i.flightDate}
+Route: ${i.depIata} → ${i.arrIata}
+
+Dear Sir or Madam,
+
+I am writing to claim the compensation I am entitled to under ${r.jurisdiction} for the above flight, which ${
+  i.eventType === 'DELAYED' ? `arrived ${i.arrivalDelayHours} hours late at the final destination`
+  : i.eventType === 'CANCELLED' ? 'was cancelled without sufficient notice'
+  : 'on which I was denied boarding against my will'
+}.
+
+Flight distance is ${r.distanceKm.toFixed(0)} km, which entitles me to ${r.currency} ${r.amount} per passenger.
+
+Please transfer the amount to the following account within 14 days:
+IBAN: ${i.iban ?? '[IBAN]'}
+Account holder: ${i.passengerName}
+
+If I do not receive full payment within 14 days, I will escalate this claim to the national enforcement body and, if necessary, take court action. All legal costs will be added to the claim.
+
+Yours faithfully,
+${i.passengerName}
+Date: ${new Date().toISOString().slice(0,10)}
+`,
+};
+
+export function buildLetter(i: LetterInput, r: Extract<EligibilityResult,{eligible:true}>): string {
+  const fn = TEMPLATES[i.lang ?? 'en'] ?? TEMPLATES.en;
+  return fn(i, r);
+}
+
+export const renderLetter = (i: LetterInput, r?: Extract<EligibilityResult,{eligible:true}>) =>
+  buildLetter(i, r ?? { eligible: true, jurisdiction: 'EU261', amount: 0, currency: 'EUR', distanceKm: 0 });

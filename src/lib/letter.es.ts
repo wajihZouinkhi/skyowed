@@ -1,1 +1,34 @@
-aW1wb3J0IHR5cGUgeyBDbGFpbUlucHV0IH0gZnJvbSAnLi9sZXR0ZXInOwoKZXhwb3J0IGZ1bmN0aW9uIHJlbmRlckxldHRlckVTKGlucHV0OiBDbGFpbUlucHV0KTogc3RyaW5nIHsKICBjb25zdCB7IHBhc3NlbmdlciwgYWlybGluZSwgZmxpZ2h0TnVtYmVyLCBkZXBhcnR1cmUsIGFycml2YWwsIGRhdGUsIGFtb3VudCwgYmFzaXMgfSA9IGlucHV0OwogIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKTsKICByZXR1cm4gWwogICAgcGFzc2VuZ2VyLmZ1bGxOYW1lLAogICAgcGFzc2VuZ2VyLmFkZHJlc3MsCiAgICAnJywKICAgIHRvZGF5LAogICAgJycsCiAgICBhaXJsaW5lLm5hbWUsCiAgICAnU2VydmljaW8gZGUgcmVjbGFtYWNpb25lcycsCiAgICBhaXJsaW5lLmFkZHJlc3MsCiAgICAnJywKICAgIGBBc3VudG86IFJlY2xhbWFjacOzbiBkZSBpbmRlbW5pemFjacOzbiDigJQgJHtiYXNpc30g4oCUIFZ1ZWxvICR7ZmxpZ2h0TnVtYmVyfSBkZWwgJHtkYXRlfWAsCiAgICAnJywKICAgICdFc3RpbWFkb3Mgc2XDsW9yZXM6JywKICAgICcnLAogICAgYEZ1aSBwYXNhamVyby9hIGRlbCB2dWVsbyAke2ZsaWdodE51bWJlcn0gb3BlcmFkbyBwb3IgJHthaXJsaW5lLm5hbWV9IGVsICR7ZGF0ZX0sIGNvbiBvcmlnZW4gZW4gJHtkZXBhcnR1cmV9IHkgZGVzdGlubyAke2Fycml2YWx9IChsb2NhbGl6YWRvcjogJHtwYXNzZW5nZXIucG5yfSkuYCwKICAgICcnLAogICAgYENvbmZvcm1lIGFsICR7YmFzaXMgPT09ICdVSzI2MScgPyAnUmVnbGFtZW50byBVSzI2MScgOiAnUmVnbGFtZW50byAoQ0UpIG4uwrogMjYxLzIwMDQnfSwgbWUgY29ycmVzcG9uZGUgdW5hIGNvbXBlbnNhY2nDs24gZGUgJHthbW91bnR9IEVVUi5gLAogICAgJycsCiAgICBgU29saWNpdG8gZWwgYWJvbm8gZGUgJHthbW91bnR9IEVVUiBlbiB1biBwbGF6byBkZSAxNCBkw61hcyBlbiBsYSBjdWVudGE6ICR7cGFzc2VuZ2VyLmliYW59LmAsCiAgICAnJywKICAgICdEZSBubyByZWNpYmlyIHJlc3B1ZXN0YSwgYWN1ZGlyw6kgYSBsYSBhdXRvcmlkYWQgbmFjaW9uYWwgY29tcGV0ZW50ZSB5IGEgbG9zIHRyaWJ1bmFsZXMuJywKICAgICcnLAogICAgJ0F0ZW50YW1lbnRlLCcsCiAgICAnJywKICAgIHBhc3Nlbmdlci5mdWxsTmFtZSwKICAgICcnLAogICAgJ+KAlCBBZGp1bnRvczogdGFyamV0YSBkZSBlbWJhcnF1ZSwgY29uZmlybWFjacOzbiBkZSByZXNlcnZhLicsCiAgXS5qb2luKCdcbicpOwp9Cg==
+import type { ClaimInput } from './letter';
+
+export function renderLetterES(input: ClaimInput): string {
+  const { passenger, airline, flightNumber, departure, arrival, date, amount, basis } = input;
+  const today = new Date().toISOString().slice(0, 10);
+  return [
+    passenger.fullName,
+    passenger.address,
+    '',
+    today,
+    '',
+    airline.name,
+    'Servicio de reclamaciones',
+    airline.address,
+    '',
+    `Asunto: Reclamación de indemnización — ${basis} — Vuelo ${flightNumber} del ${date}`,
+    '',
+    'Estimados señores:',
+    '',
+    `Fui pasajero/a del vuelo ${flightNumber} operado por ${airline.name} el ${date}, con origen en ${departure} y destino ${arrival} (localizador: ${passenger.pnr}).`,
+    '',
+    `Conforme al ${basis === 'UK261' ? 'Reglamento UK261' : 'Reglamento (CE) n.º 261/2004'}, me corresponde una compensación de ${amount} EUR.`,
+    '',
+    `Solicito el abono de ${amount} EUR en un plazo de 14 días en la cuenta: ${passenger.iban}.`,
+    '',
+    'De no recibir respuesta, acudiré a la autoridad nacional competente y a los tribunales.',
+    '',
+    'Atentamente,',
+    '',
+    passenger.fullName,
+    '',
+    '— Adjuntos: tarjeta de embarque, confirmación de reserva.',
+  ].join('\n');
+}

@@ -1,1 +1,50 @@
-ZXhwb3J0IHR5cGUgTG9jYWxlID0gJ2VuJyB8ICdmcicgfCAnZGUnIHwgJ2VzJzsKZXhwb3J0IGNvbnN0IExPQ0FMRVM6IExvY2FsZVtdID0gWydlbicsICdmcicsICdkZScsICdlcyddOwpleHBvcnQgY29uc3QgREVGQVVMVF9MT0NBTEU6IExvY2FsZSA9ICdlbic7CgpleHBvcnQgY29uc3QgZGljdDogUmVjb3JkPExvY2FsZSwgUmVjb3JkPHN0cmluZywgc3RyaW5nPj4gPSB7CiAgZW46IHsKICAgICdjdGEuY2hlY2snOiAnQ2hlY2sgbXkgZmxpZ2h0JywKICAgICdjdGEucGF5JzogJ0dldCBteSBsZXR0ZXIgKOKCrDYuOTkpJywKICAgICdzdGF0dXMuZHJhZnQnOiAnRHJhZnQnLAogICAgJ3N0YXR1cy5sZXR0ZXJfc2VudCc6ICdMZXR0ZXIgc2VudCcsCiAgICAnc3RhdHVzLmF3YWl0aW5nJzogJ0F3YWl0aW5nIHJlcGx5JywKICAgICdzdGF0dXMucGFpZCc6ICdQYWlkJywKICAgICdzdGF0dXMucmVqZWN0ZWQnOiAnUmVqZWN0ZWQnLAogICAgJ25hdi5kYXNoYm9hcmQnOiAnTXkgY2xhaW1zJywKICB9LAogIGZyOiB7CiAgICAnY3RhLmNoZWNrJzogJ1bDqXJpZmllciBtb24gdm9sJywKICAgICdjdGEucGF5JzogJ09idGVuaXIgbWEgbGV0dHJlICg2LDk5IOKCrCknLAogICAgJ3N0YXR1cy5kcmFmdCc6ICdCcm91aWxsb24nLAogICAgJ3N0YXR1cy5sZXR0ZXJfc2VudCc6ICdMZXR0cmUgZW52b3nDqWUnLAogICAgJ3N0YXR1cy5hd2FpdGluZyc6ICdFbiBhdHRlbnRlIGRlIHLDqXBvbnNlJywKICAgICdzdGF0dXMucGFpZCc6ICdJbmRlbW5pc8OpJywKICAgICdzdGF0dXMucmVqZWN0ZWQnOiAnUmVmdXPDqScsCiAgICAnbmF2LmRhc2hib2FyZCc6ICdNZXMgZG9zc2llcnMnLAogIH0sCiAgZGU6IHsKICAgICdjdGEuY2hlY2snOiAnRmx1ZyBwcsO8ZmVuJywKICAgICdjdGEucGF5JzogJ011c3RlcmJyaWVmIGhvbGVuICg2LDk5IOKCrCknLAogICAgJ3N0YXR1cy5kcmFmdCc6ICdFbnR3dXJmJywKICAgICdzdGF0dXMubGV0dGVyX3NlbnQnOiAnQnJpZWYgZ2VzZW5kZXQnLAogICAgJ3N0YXR1cy5hd2FpdGluZyc6ICdXYXJ0ZXQgYXVmIEFudHdvcnQnLAogICAgJ3N0YXR1cy5wYWlkJzogJ0JlemFobHQnLAogICAgJ3N0YXR1cy5yZWplY3RlZCc6ICdBYmdlbGVobnQnLAogICAgJ25hdi5kYXNoYm9hcmQnOiAnTWVpbmUgRsOkbGxlJywKICB9LAogIGVzOiB7CiAgICAnY3RhLmNoZWNrJzogJ0NvbXByb2JhciBtaSB2dWVsbycsCiAgICAnY3RhLnBheSc6ICdPYnRlbmVyIG1pIGNhcnRhICg2LDk5IOKCrCknLAogICAgJ3N0YXR1cy5kcmFmdCc6ICdCb3JyYWRvcicsCiAgICAnc3RhdHVzLmxldHRlcl9zZW50JzogJ0NhcnRhIGVudmlhZGEnLAogICAgJ3N0YXR1cy5hd2FpdGluZyc6ICdFc3BlcmFuZG8gcmVzcHVlc3RhJywKICAgICdzdGF0dXMucGFpZCc6ICdQYWdhZG8nLAogICAgJ3N0YXR1cy5yZWplY3RlZCc6ICdSZWNoYXphZG8nLAogICAgJ25hdi5kYXNoYm9hcmQnOiAnTWlzIHJlY2xhbWFjaW9uZXMnLAogIH0sCn07CgpleHBvcnQgZnVuY3Rpb24gdChsb2NhbGU6IExvY2FsZSwga2V5OiBzdHJpbmcpOiBzdHJpbmcgewogIHJldHVybiBkaWN0W2xvY2FsZV0/LltrZXldID8/IGRpY3QuZW5ba2V5XSA/PyBrZXk7Cn0K
+export type Locale = 'en' | 'fr' | 'de' | 'es';
+export const LOCALES: Locale[] = ['en', 'fr', 'de', 'es'];
+export const DEFAULT_LOCALE: Locale = 'en';
+
+export const dict: Record<Locale, Record<string, string>> = {
+  en: {
+    'cta.check': 'Check my flight',
+    'cta.pay': 'Get my letter (€6.99)',
+    'status.draft': 'Draft',
+    'status.letter_sent': 'Letter sent',
+    'status.awaiting': 'Awaiting reply',
+    'status.paid': 'Paid',
+    'status.rejected': 'Rejected',
+    'nav.dashboard': 'My claims',
+  },
+  fr: {
+    'cta.check': 'Vérifier mon vol',
+    'cta.pay': 'Obtenir ma lettre (6,99 €)',
+    'status.draft': 'Brouillon',
+    'status.letter_sent': 'Lettre envoyée',
+    'status.awaiting': 'En attente de réponse',
+    'status.paid': 'Indemnisé',
+    'status.rejected': 'Refusé',
+    'nav.dashboard': 'Mes dossiers',
+  },
+  de: {
+    'cta.check': 'Flug prüfen',
+    'cta.pay': 'Musterbrief holen (6,99 €)',
+    'status.draft': 'Entwurf',
+    'status.letter_sent': 'Brief gesendet',
+    'status.awaiting': 'Wartet auf Antwort',
+    'status.paid': 'Bezahlt',
+    'status.rejected': 'Abgelehnt',
+    'nav.dashboard': 'Meine Fälle',
+  },
+  es: {
+    'cta.check': 'Comprobar mi vuelo',
+    'cta.pay': 'Obtener mi carta (6,99 €)',
+    'status.draft': 'Borrador',
+    'status.letter_sent': 'Carta enviada',
+    'status.awaiting': 'Esperando respuesta',
+    'status.paid': 'Pagado',
+    'status.rejected': 'Rechazado',
+    'nav.dashboard': 'Mis reclamaciones',
+  },
+};
+
+export function t(locale: Locale, key: string): string {
+  return dict[locale]?.[key] ?? dict.en[key] ?? key;
+}

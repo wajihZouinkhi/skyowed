@@ -1,1 +1,26 @@
-J3VzZSBjbGllbnQnOwppbXBvcnQgeyBMT0NBTEVTLCB0eXBlIExvY2FsZSB9IGZyb20gJ0AvbGliL2kxOG4nOwppbXBvcnQgeyB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSAncmVhY3QnOwoKZXhwb3J0IGZ1bmN0aW9uIExhbmd1YWdlU3dpdGNoZXIoKSB7CiAgY29uc3QgW2xvYywgc2V0TG9jXSA9IHVzZVN0YXRlPExvY2FsZT4oJ2VuJyk7CiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGNvbnN0IHMgPSAobG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3NreW93ZWQubG9jYWxlJykgYXMgTG9jYWxlKSB8fCAnZW4nOwogICAgc2V0TG9jKHMpOwogIH0sIFtdKTsKICBmdW5jdGlvbiBjaGFuZ2UobDogTG9jYWxlKSB7CiAgICBzZXRMb2MobCk7CiAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnc2t5b3dlZC5sb2NhbGUnLCBsKTsKICAgIGRvY3VtZW50LmRvY3VtZW50RWxlbWVudC5sYW5nID0gbDsKICB9CiAgcmV0dXJuICgKICAgIDxzZWxlY3QKICAgICAgdmFsdWU9e2xvY30KICAgICAgb25DaGFuZ2U9e2UgPT4gY2hhbmdlKGUudGFyZ2V0LnZhbHVlIGFzIExvY2FsZSl9CiAgICAgIGFyaWEtbGFiZWw9Ikxhbmd1YWdlIgogICAgICBjbGFzc05hbWU9InJvdW5kZWQgYm9yZGVyIHB4LTIgcHktMSB0ZXh0LXNtIgogICAgPgogICAgICB7TE9DQUxFUy5tYXAobCA9PiA8b3B0aW9uIGtleT17bH0gdmFsdWU9e2x9PntsLnRvVXBwZXJDYXNlKCl9PC9vcHRpb24+KX0KICAgIDwvc2VsZWN0PgogICk7Cn0K
+'use client';
+import { LOCALES, type Locale } from '@/lib/i18n';
+import { useEffect, useState } from 'react';
+
+export function LanguageSwitcher() {
+  const [loc, setLoc] = useState<Locale>('en');
+  useEffect(() => {
+    const s = (localStorage.getItem('skyowed.locale') as Locale) || 'en';
+    setLoc(s);
+  }, []);
+  function change(l: Locale) {
+    setLoc(l);
+    localStorage.setItem('skyowed.locale', l);
+    document.documentElement.lang = l;
+  }
+  return (
+    <select
+      value={loc}
+      onChange={e => change(e.target.value as Locale)}
+      aria-label="Language"
+      className="rounded border px-2 py-1 text-sm"
+    >
+      {LOCALES.map(l => <option key={l} value={l}>{l.toUpperCase()}</option>)}
+    </select>
+  );
+}
