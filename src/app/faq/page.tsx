@@ -1,1 +1,23 @@
-ZXhwb3J0IGNvbnN0IG1ldGFkYXRhID0geyB0aXRsZTogJ0ZBUSDigJQgU2t5T3dlZCcgfTsKY29uc3QgUUE6IHtxOnN0cmluZzthOnN0cmluZ31bXSA9IFsKICB7IHE6ICdIb3cgbXVjaCBjYW4gSSBnZXQ/JywgYTogJ1VwIHRvIOKCrDYwMCAoRVUyNjEpIG9yIMKjNTIwIChVSzI2MSkgcGVyIHBhc3NlbmdlciBkZXBlbmRpbmcgb24gZGlzdGFuY2UuJyB9LAogIHsgcTogJ0hvdyBmYXIgYmFjayBjYW4gSSBjbGFpbT8nLCBhOiAnQmV0d2VlbiAxIGFuZCA2IHllYXJzIGRlcGVuZGluZyBvbiB0aGUgY291bnRyeSBvZiBkZXBhcnR1cmUuIFNreU93ZWQgdGVsbHMgeW91IGluIHRoZSByZXN1bHQuJyB9LAogIHsgcTogJ1doYXQgaWYgdGhlIGFpcmxpbmUgc2F5cyBleHRyYW9yZGluYXJ5IGNpcmN1bXN0YW5jZXM/JywgYTogJ1dlYXRoZXIsIHN0cmlrZXMsIGJpcmQgc3RyaWtlcywgYW5kIEFUQyBpc3N1ZXMgYXJlIG9mdGVuIGRpc3B1dGVkLiBNYW55IGFpcmxpbmUgZGVmZW5jZXMgZmFpbCBpbiBjb3VydC4gUmVwbHkgYW5kIGluc2lzdDsgZXNjYWxhdGUgdG8gdGhlIG5hdGlvbmFsIGVuZm9yY2VtZW50IGJvZHkgaWYgbmVlZGVkLicgfSwKICB7IHE6ICdEbyB5b3UgdGFrZSBhIGN1dD8nLCBhOiAnTm8uIE9uZS10aW1lIOKCrDYuOTkgZm9yIHRoZSBsZXR0ZXIuIFlvdSBrZWVwIDEwMCUgb2YgdGhlIGNvbXBlbnNhdGlvbi4nIH0sCiAgeyBxOiAnV2hpY2ggZmxpZ2h0cyBhcmUgY292ZXJlZD8nLCBhOiAnQW55IGZsaWdodCBkZXBhcnRpbmcgZnJvbSB0aGUgRVUvVUssIGFuZCBmbGlnaHRzIGFycml2aW5nIGluIHRoZSBFVS9VSyBvcGVyYXRlZCBieSBhbiBFVS9VSyBhaXJsaW5lLicgfSwKXTsKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gRkFRKCkgewogIHJldHVybiAoCiAgICA8bWFpbiBjbGFzc05hbWU9Im14LWF1dG8gbWF4LXctM3hsIHB4LTYgcHktMTYiPgogICAgICA8aDEgY2xhc3NOYW1lPSJ0ZXh0LTN4bCBmb250LWJvbGQiPkZBUTwvaDE+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJtdC04IHNwYWNlLXktNiI+CiAgICAgICAge1FBLm1hcCgoeCkgPT4gKAogICAgICAgICAgPGRldGFpbHMga2V5PXt4LnF9IGNsYXNzTmFtZT0icm91bmRlZC14bCBib3JkZXIgYm9yZGVyLXdoaXRlLzEwIGJnLXdoaXRlLzUgcC01Ij4KICAgICAgICAgICAgPHN1bW1hcnkgY2xhc3NOYW1lPSJjdXJzb3ItcG9pbnRlciBmb250LXNlbWlib2xkIj57eC5xfTwvc3VtbWFyeT4KICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJtdC0yIHRleHQtd2hpdGUvNzAiPnt4LmF9PC9wPgogICAgICAgICAgPC9kZXRhaWxzPgogICAgICAgICkpfQogICAgICA8L2Rpdj4KICAgIDwvbWFpbj4KICApOwp9Cg==
+export const metadata = { title: 'FAQ — SkyOwed' };
+const QA: {q:string;a:string}[] = [
+  { q: 'How much can I get?', a: 'Up to €600 (EU261) or £520 (UK261) per passenger depending on distance.' },
+  { q: 'How far back can I claim?', a: 'Between 1 and 6 years depending on the country of departure. SkyOwed tells you in the result.' },
+  { q: 'What if the airline says extraordinary circumstances?', a: 'Weather, strikes, bird strikes, and ATC issues are often disputed. Many airline defences fail in court. Reply and insist; escalate to the national enforcement body if needed.' },
+  { q: 'Do you take a cut?', a: 'No. One-time €6.99 for the letter. You keep 100% of the compensation.' },
+  { q: 'Which flights are covered?', a: 'Any flight departing from the EU/UK, and flights arriving in the EU/UK operated by an EU/UK airline.' },
+];
+export default function FAQ() {
+  return (
+    <main className="mx-auto max-w-3xl px-6 py-16">
+      <h1 className="text-3xl font-bold">FAQ</h1>
+      <div className="mt-8 space-y-6">
+        {QA.map((x) => (
+          <details key={x.q} className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <summary className="cursor-pointer font-semibold">{x.q}</summary>
+            <p className="mt-2 text-white/70">{x.a}</p>
+          </details>
+        ))}
+      </div>
+    </main>
+  );
+}

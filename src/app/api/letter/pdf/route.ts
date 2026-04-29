@@ -1,1 +1,25 @@
-aW1wb3J0IHsgTmV4dFJlcXVlc3QsIE5leHRSZXNwb25zZSB9IGZyb20gJ25leHQvc2VydmVyJzsKaW1wb3J0IHsgcmVuZGVyTGV0dGVyLCB0eXBlIENsYWltSW5wdXQgfSBmcm9tICdAL2xpYi9sZXR0ZXInOwppbXBvcnQgeyByZW5kZXJMZXR0ZXJGUiB9IGZyb20gJ0AvbGliL2xldHRlci5mcic7CmltcG9ydCB7IHJlbmRlckxldHRlckRFIH0gZnJvbSAnQC9saWIvbGV0dGVyLmRlJzsKaW1wb3J0IHsgcmVuZGVyTGV0dGVyRVMgfSBmcm9tICdAL2xpYi9sZXR0ZXIuZXMnOwppbXBvcnQgeyBidWlsZFBkZiB9IGZyb20gJ0AvbGliL3BkZic7CgpleHBvcnQgY29uc3QgcnVudGltZSA9ICdub2RlanMnOwoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBPU1QocmVxOiBOZXh0UmVxdWVzdCkgewogIGNvbnN0IGJvZHkgPSAoYXdhaXQgcmVxLmpzb24oKSkgYXMgQ2xhaW1JbnB1dCAmIHsgbG9jYWxlPzogc3RyaW5nIH07CiAgY29uc3QgbG9jYWxlID0gYm9keS5sb2NhbGUgPz8gJ2VuJzsKICBjb25zdCB0ZXh0ID0KICAgIGxvY2FsZSA9PT0gJ2ZyJyA/IHJlbmRlckxldHRlckZSKGJvZHkpIDoKICAgIGxvY2FsZSA9PT0gJ2RlJyA/IHJlbmRlckxldHRlckRFKGJvZHkpIDoKICAgIGxvY2FsZSA9PT0gJ2VzJyA/IHJlbmRlckxldHRlckVTKGJvZHkpIDoKICAgIHJlbmRlckxldHRlcihib2R5KTsKICBjb25zdCBwZGYgPSBhd2FpdCBidWlsZFBkZih0ZXh0LCB7IHRpdGxlOiBgQ2xhaW0gJHtib2R5LmZsaWdodE51bWJlcn1gIH0pOwogIHJldHVybiBuZXcgTmV4dFJlc3BvbnNlKHBkZiwgewogICAgaGVhZGVyczogewogICAgICAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL3BkZicsCiAgICAgICdDb250ZW50LURpc3Bvc2l0aW9uJzogYGF0dGFjaG1lbnQ7IGZpbGVuYW1lPXNreW93ZWQtJHtib2R5LmZsaWdodE51bWJlcn0ucGRmYCwKICAgIH0sCiAgfSk7Cn0K
+import { NextRequest, NextResponse } from 'next/server';
+import { renderLetter, type ClaimInput } from '@/lib/letter';
+import { renderLetterFR } from '@/lib/letter.fr';
+import { renderLetterDE } from '@/lib/letter.de';
+import { renderLetterES } from '@/lib/letter.es';
+import { buildPdf } from '@/lib/pdf';
+
+export const runtime = 'nodejs';
+
+export async function POST(req: NextRequest) {
+  const body = (await req.json()) as ClaimInput & { locale?: string };
+  const locale = body.locale ?? 'en';
+  const text =
+    locale === 'fr' ? renderLetterFR(body) :
+    locale === 'de' ? renderLetterDE(body) :
+    locale === 'es' ? renderLetterES(body) :
+    renderLetter(body);
+  const pdf = await buildPdf(text, { title: `Claim ${body.flightNumber}` });
+  return new NextResponse(pdf, {
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=skyowed-${body.flightNumber}.pdf`,
+    },
+  });
+}

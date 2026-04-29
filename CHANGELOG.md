@@ -1,1 +1,20 @@
-IyBDaGFuZ2Vsb2cKCiMjIDAuMi4wIOKAlCAyMDI2LTA0LTIzCiMjIyBGaXhlZAotIFJlbW92ZWQgY29uZmxpY3Rpbmcgcm9vdCBgYXBwL2AsIGBsaWIvYCwgYG5leHQuY29uZmlnLmpzYCwgYHRhaWx3aW5kLmNvbmZpZy5qc2AsIGBwb3N0Y3NzLmNvbmZpZy5qc2Ag4oCUIGNhbm9uaWNhbCBzb3VyY2UgaXMgYHNyYy9gLgotIEdhdGVkIGBvdXRwdXQ6ICdleHBvcnQnYCBiZWhpbmQgYEJVSUxEX1RBUkdFVD1tb2JpbGVgIHNvIEFQSSByb3V0ZXMgd29yayBpbiB3ZWIgYnVpbGRzLgotIERlbGV0ZWQgZHVwbGljYXRlIGBzcmMvbGliL3N0b3JlLnRzYCAoa2VwdCBgc3RvcmUudHN4YCkuCi0gRml4ZWQgYHRzY29uZmlnLmpzb25gIHBhdGggYWxpYXMgdG8gYC4vc3JjLypgIGFuZCBpbmNsdWRlZCBvbmx5IGBzcmMvKipgLgotIEFkZGVkIG1pc3NpbmcgQ2FwYWNpdG9yIGRlcGVuZGVuY2llcyB0byBgcGFja2FnZS5qc29uYC4KCiMjIyBBZGRlZAotIGAvYWJvdXRgLCBgL2ZhcWAsIGAvc3VjY2Vzc2AgcGFnZXMuCi0gYHNyYy9hcHAvYXBpL2xldHRlci9yb3V0ZS50c2Ag4oCUIGdlbmVyYXRlcyBhIHBlcnNvbmFsaXNlZCBFVTI2MS9VSzI2MSBjbGFpbSBsZXR0ZXIuCi0gYHNyYy9hcHAvYXBpL2NoZWNrb3V0L3JvdXRlLnRzYCDigJQgU3RyaXBlIGNoZWNrb3V0IGZvciB0aGUg4oKsNi45OSBsZXR0ZXIuCi0gYHNyYy9saWIvbGV0dGVyLnRzYCwgYHNyYy9saWIvc3RyaXBlLnRzYCwgYHNyYy9saWIvc3VwYWJhc2UudHNgLgotIGBzcmMvbGliL2VsaWdpYmlsaXR5LnRlc3QudHNgIOKAlCA1IHVuaXQgdGVzdHMgZm9yIHRoZSBlbGlnaWJpbGl0eSBlbmdpbmUuCi0gYENIQU5HRUxPRy5tZGAsIGBDT05UUklCVVRJTkcubWRgLgoKIyMgMC4xLjAg4oCUIDIwMjYtMDQtMjMKLSBJbml0aWFsIHNjYWZmb2xkOiBwbGFuLyBkb2NzLCBOZXh0LmpzIHNrZWxldG9uLCBTdXBhYmFzZSBzY2hlbWEuCg==
+# Changelog
+
+## 0.2.0 — 2026-04-23
+### Fixed
+- Removed conflicting root `app/`, `lib/`, `next.config.js`, `tailwind.config.js`, `postcss.config.js` — canonical source is `src/`.
+- Gated `output: 'export'` behind `BUILD_TARGET=mobile` so API routes work in web builds.
+- Deleted duplicate `src/lib/store.ts` (kept `store.tsx`).
+- Fixed `tsconfig.json` path alias to `./src/*` and included only `src/**`.
+- Added missing Capacitor dependencies to `package.json`.
+
+### Added
+- `/about`, `/faq`, `/success` pages.
+- `src/app/api/letter/route.ts` — generates a personalised EU261/UK261 claim letter.
+- `src/app/api/checkout/route.ts` — Stripe checkout for the €6.99 letter.
+- `src/lib/letter.ts`, `src/lib/stripe.ts`, `src/lib/supabase.ts`.
+- `src/lib/eligibility.test.ts` — 5 unit tests for the eligibility engine.
+- `CHANGELOG.md`, `CONTRIBUTING.md`.
+
+## 0.1.0 — 2026-04-23
+- Initial scaffold: plan/ docs, Next.js skeleton, Supabase schema.

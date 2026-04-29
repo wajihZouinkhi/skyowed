@@ -1,1 +1,11 @@
-ZXhwb3J0IGNvbnN0IG1ldGFkYXRhID0geyB0aXRsZTogJ1BheW1lbnQgcmVjZWl2ZWQg4oCUIFNreU93ZWQnIH07CmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFN1Y2Nlc3NQYWdlKCkgewogIHJldHVybiAoCiAgICA8bWFpbiBjbGFzc05hbWU9Im14LWF1dG8gbWF4LXctMnhsIHB4LTYgcHktMjQgdGV4dC1jZW50ZXIiPgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibXgtYXV0byBmbGV4IGgtMTYgdy0xNiBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC1mdWxsIGJnLWVtZXJhbGQtNTAwLzIwIHRleHQtZW1lcmFsZC0zMDAgdGV4dC0zeGwiPuKckzwvZGl2PgogICAgICA8aDEgY2xhc3NOYW1lPSJtdC02IHRleHQtM3hsIGZvbnQtYm9sZCI+VGhhbmtzIOKAlCB5b3VyIGxldHRlciBpcyBvbiBpdHMgd2F5PC9oMT4KICAgICAgPHAgY2xhc3NOYW1lPSJtdC0zIHRleHQtd2hpdGUvNzAiPkNoZWNrIHlvdXIgZW1haWwgaW4gdGhlIG5leHQgMiBtaW51dGVzLiBSZXBseSB0byB0aGlzIG9yZGVyIGlmIGl0IGRvZXMgbm90IGFycml2ZTogaGVsbG9Ac2t5b3dlZC5hcHA8L3A+CiAgICAgIDxhIGhyZWY9Ii8iIGNsYXNzTmFtZT0ibXQtOCBpbmxpbmUtYmxvY2sgcm91bmRlZC14bCBiZy1ncmFkaWVudC10by1yIGZyb20tdmlvbGV0LTUwMCB0by1jeWFuLTQwMCBweC02IHB5LTMgZm9udC1zZW1pYm9sZCB0ZXh0LXdoaXRlIj5DaGVjayBhbm90aGVyIGZsaWdodDwvYT4KICAgIDwvbWFpbj4KICApOwp9Cg==
+export const metadata = { title: 'Payment received — SkyOwed' };
+export default function SuccessPage() {
+  return (
+    <main className="mx-auto max-w-2xl px-6 py-24 text-center">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300 text-3xl">✓</div>
+      <h1 className="mt-6 text-3xl font-bold">Thanks — your letter is on its way</h1>
+      <p className="mt-3 text-white/70">Check your email in the next 2 minutes. Reply to this order if it does not arrive: hello@skyowed.app</p>
+      <a href="/" className="mt-8 inline-block rounded-xl bg-gradient-to-r from-violet-500 to-cyan-400 px-6 py-3 font-semibold text-white">Check another flight</a>
+    </main>
+  );
+}

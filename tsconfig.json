@@ -1,1 +1,22 @@
-ewogICJjb21waWxlck9wdGlvbnMiOiB7CiAgICAidGFyZ2V0IjogIkVTMjAyMiIsCiAgICAibGliIjogWyJkb20iLCJkb20uaXRlcmFibGUiLCJlc25leHQiXSwKICAgICJhbGxvd0pzIjogdHJ1ZSwKICAgICJza2lwTGliQ2hlY2siOiB0cnVlLAogICAgInN0cmljdCI6IHRydWUsCiAgICAibm9FbWl0IjogdHJ1ZSwKICAgICJlc01vZHVsZUludGVyb3AiOiB0cnVlLAogICAgIm1vZHVsZSI6ICJlc25leHQiLAogICAgIm1vZHVsZVJlc29sdXRpb24iOiAiYnVuZGxlciIsCiAgICAicmVzb2x2ZUpzb25Nb2R1bGUiOiB0cnVlLAogICAgImlzb2xhdGVkTW9kdWxlcyI6IHRydWUsCiAgICAianN4IjogInByZXNlcnZlIiwKICAgICJpbmNyZW1lbnRhbCI6IHRydWUsCiAgICAicGx1Z2lucyI6IFt7Im5hbWUiOiJuZXh0In1dLAogICAgImJhc2VVcmwiOiAiLiIsCiAgICAicGF0aHMiOiB7ICJALyoiOiBbIi4vc3JjLyoiXSB9CiAgfSwKICAiaW5jbHVkZSI6IFsibmV4dC1lbnYuZC50cyIsInNyYy8qKi8qLnRzIiwic3JjLyoqLyoudHN4IiwiLm5leHQvdHlwZXMvKiovKi50cyJdLAogICJleGNsdWRlIjogWyJub2RlX21vZHVsZXMiXQp9Cg==
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom","dom.iterable","esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{"name":"next"}],
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["next-env.d.ts","src/**/*.ts","src/**/*.tsx",".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

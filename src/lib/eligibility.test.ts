@@ -1,1 +1,52 @@
-aW1wb3J0IHRlc3QgZnJvbSAnbm9kZTp0ZXN0JzsKaW1wb3J0IGFzc2VydCBmcm9tICdub2RlOmFzc2VydC9zdHJpY3QnOwppbXBvcnQgeyBjaGVja0VsaWdpYmlsaXR5IH0gZnJvbSAnLi9lbGlnaWJpbGl0eSc7Cgp0ZXN0KCdFVTI2MSBlbGlnaWJsZSBmb3IgNGggZGVsYXkgbG9uZyBoYXVsIGZyb20gRVUnLCAoKSA9PiB7CiAgY29uc3QgciA9IGNoZWNrRWxpZ2liaWxpdHkoewogICAgZGVwSWF0YTogJ0NERycsIGFycklhdGE6ICdKRksnLCBhaXJsaW5lQ291bnRyeTogJ0ZSJywKICAgIGV2ZW50VHlwZTogJ0RFTEFZRUQnLCBmbGlnaHREYXRlOiAnMjAyNC0wMS0xNScsIGFycml2YWxEZWxheUhvdXJzOiA1LAogIH0pOwogIGFzc2VydC5lcXVhbChyLmVsaWdpYmxlLCB0cnVlKTsKICBpZiAoci5lbGlnaWJsZSkgewogICAgYXNzZXJ0LmVxdWFsKHIuanVyaXNkaWN0aW9uLCAnRVUyNjEnKTsKICAgIGFzc2VydC5lcXVhbChyLmN1cnJlbmN5LCAnRVVSJyk7CiAgICBhc3NlcnQuZXF1YWwoci5hbW91bnQsIDYwMCk7CiAgfQp9KTsKCnRlc3QoJ05vdCBlbGlnaWJsZSB3aGVuIGRlbGF5IHVuZGVyIHRocmVzaG9sZCcsICgpID0+IHsKICBjb25zdCByID0gY2hlY2tFbGlnaWJpbGl0eSh7CiAgICBkZXBJYXRhOiAnQ0RHJywgYXJySWF0YTogJ0xIUicsIGFpcmxpbmVDb3VudHJ5OiAnRlInLAogICAgZXZlbnRUeXBlOiAnREVMQVlFRCcsIGZsaWdodERhdGU6ICcyMDI0LTAxLTE1JywgYXJyaXZhbERlbGF5SG91cnM6IDEsCiAgfSk7CiAgYXNzZXJ0LmVxdWFsKHIuZWxpZ2libGUsIGZhbHNlKTsKfSk7Cgp0ZXN0KCdVSzI2MSBmb3IgR0IgZGVwYXJ0dXJlJywgKCkgPT4gewogIGNvbnN0IHIgPSBjaGVja0VsaWdpYmlsaXR5KHsKICAgIGRlcElhdGE6ICdMSFInLCBhcnJJYXRhOiAnQ0RHJywgYWlybGluZUNvdW50cnk6ICdHQicsCiAgICBldmVudFR5cGU6ICdERUxBWUVEJywgZmxpZ2h0RGF0ZTogJzIwMjQtMDEtMTUnLCBhcnJpdmFsRGVsYXlIb3VyczogNCwKICB9KTsKICBhc3NlcnQuZXF1YWwoci5lbGlnaWJsZSwgdHJ1ZSk7CiAgaWYgKHIuZWxpZ2libGUpIHsKICAgIGFzc2VydC5lcXVhbChyLmp1cmlzZGljdGlvbiwgJ1VLMjYxJyk7CiAgICBhc3NlcnQuZXF1YWwoci5jdXJyZW5jeSwgJ0dCUCcpOwogIH0KfSk7Cgp0ZXN0KCdDYW5jZWxsYXRpb24gd2l0aCAxNCsgZGF5cyBub3RpY2Ugbm90IGVsaWdpYmxlJywgKCkgPT4gewogIGNvbnN0IHIgPSBjaGVja0VsaWdpYmlsaXR5KHsKICAgIGRlcElhdGE6ICdNQUQnLCBhcnJJYXRhOiAnRlJBJywgYWlybGluZUNvdW50cnk6ICdERScsCiAgICBldmVudFR5cGU6ICdDQU5DRUxMRUQnLCBmbGlnaHREYXRlOiAnMjAyNC0wNi0wMScsIGNhbmNlbE5vdGljZURheXM6IDMwLAogIH0pOwogIGFzc2VydC5lcXVhbChyLmVsaWdpYmxlLCBmYWxzZSk7Cn0pOwoKdGVzdCgnTm9uLUVVIHJvdXRlIGlzIG5vdCBjb3ZlcmVkJywgKCkgPT4gewogIGNvbnN0IHIgPSBjaGVja0VsaWdpYmlsaXR5KHsKICAgIGRlcElhdGE6ICdKRksnLCBhcnJJYXRhOiAnTEFYJywgYWlybGluZUNvdW50cnk6ICdVUycsCiAgICBldmVudFR5cGU6ICdERUxBWUVEJywgZmxpZ2h0RGF0ZTogJzIwMjQtMDEtMTUnLCBhcnJpdmFsRGVsYXlIb3VyczogMTAsCiAgfSk7CiAgYXNzZXJ0LmVxdWFsKHIuZWxpZ2libGUsIGZhbHNlKTsKfSk7Cg==
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { checkEligibility } from './eligibility';
+
+test('EU261 eligible for 4h delay long haul from EU', () => {
+  const r = checkEligibility({
+    depIata: 'CDG', arrIata: 'JFK', airlineCountry: 'FR',
+    eventType: 'DELAYED', flightDate: '2024-01-15', arrivalDelayHours: 5,
+  });
+  assert.equal(r.eligible, true);
+  if (r.eligible) {
+    assert.equal(r.jurisdiction, 'EU261');
+    assert.equal(r.currency, 'EUR');
+    assert.equal(r.amount, 600);
+  }
+});
+
+test('Not eligible when delay under threshold', () => {
+  const r = checkEligibility({
+    depIata: 'CDG', arrIata: 'LHR', airlineCountry: 'FR',
+    eventType: 'DELAYED', flightDate: '2024-01-15', arrivalDelayHours: 1,
+  });
+  assert.equal(r.eligible, false);
+});
+
+test('UK261 for GB departure', () => {
+  const r = checkEligibility({
+    depIata: 'LHR', arrIata: 'CDG', airlineCountry: 'GB',
+    eventType: 'DELAYED', flightDate: '2024-01-15', arrivalDelayHours: 4,
+  });
+  assert.equal(r.eligible, true);
+  if (r.eligible) {
+    assert.equal(r.jurisdiction, 'UK261');
+    assert.equal(r.currency, 'GBP');
+  }
+});
+
+test('Cancellation with 14+ days notice not eligible', () => {
+  const r = checkEligibility({
+    depIata: 'MAD', arrIata: 'FRA', airlineCountry: 'DE',
+    eventType: 'CANCELLED', flightDate: '2024-06-01', cancelNoticeDays: 30,
+  });
+  assert.equal(r.eligible, false);
+});
+
+test('Non-EU route is not covered', () => {
+  const r = checkEligibility({
+    depIata: 'JFK', arrIata: 'LAX', airlineCountry: 'US',
+    eventType: 'DELAYED', flightDate: '2024-01-15', arrivalDelayHours: 10,
+  });
+  assert.equal(r.eligible, false);
+});

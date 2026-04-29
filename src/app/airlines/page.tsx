@@ -1,1 +1,31 @@
-aW1wb3J0IHsgQUlSTElORVMgfSBmcm9tICdAL2xpYi9haXJsaW5lcyc7CgpleHBvcnQgY29uc3QgbWV0YWRhdGEgPSB7IHRpdGxlOiAnQWlybGluZSBkaXJlY3Rvcnkg4oCUIFNreU93ZWQnIH07CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBBaXJsaW5lc1BhZ2UoKSB7CiAgcmV0dXJuICgKICAgIDxtYWluIGNsYXNzTmFtZT0ibXgtYXV0byBtYXgtdy0zeGwgcHgtNCBweS0xMCI+CiAgICAgIDxoMSBjbGFzc05hbWU9InRleHQtM3hsIGZvbnQtYm9sZCBtYi02Ij5BaXJsaW5lIGNsYWltcyBkaXJlY3Rvcnk8L2gxPgogICAgICA8cCBjbGFzc05hbWU9InRleHQtc2xhdGUtNjAwIG1iLTYiPgogICAgICAgIFdoZXJlIHRvIHNlbmQgeW91ciBFVTI2MSAvIFVLMjYxIGRlbWFuZCBsZXR0ZXIuCiAgICAgIDwvcD4KICAgICAgPGRpdiBjbGFzc05hbWU9Im92ZXJmbG93LXgtYXV0byI+CiAgICAgICAgPHRhYmxlIGNsYXNzTmFtZT0idy1mdWxsIHRleHQtc20iPgogICAgICAgICAgPHRoZWFkIGNsYXNzTmFtZT0idGV4dC1sZWZ0IGJvcmRlci1iIj4KICAgICAgICAgICAgPHRyPjx0aCBjbGFzc05hbWU9InB5LTIiPklBVEE8L3RoPjx0aD5BaXJsaW5lPC90aD48dGg+Q2xhaW1zIGVtYWlsPC90aD48dGg+U0xBIChkYXlzKTwvdGg+PC90cj4KICAgICAgICAgIDwvdGhlYWQ+CiAgICAgICAgICA8dGJvZHk+CiAgICAgICAgICAgIHtBSVJMSU5FUy5tYXAoYSA9PiAoCiAgICAgICAgICAgICAgPHRyIGtleT17YS5pYXRhfSBjbGFzc05hbWU9ImJvcmRlci1iIj4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9InB5LTIgZm9udC1tb25vIj57YS5pYXRhfTwvdGQ+CiAgICAgICAgICAgICAgICA8dGQ+e2EubmFtZX08L3RkPgogICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT0idGV4dC1za3ktNjAwIj48YSBocmVmPXtgbWFpbHRvOiR7YS5jbGFpbXNFbWFpbH1gfT57YS5jbGFpbXNFbWFpbH08L2E+PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD57YS5zbGFEYXlzfTwvdGQ+CiAgICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgKSl9CiAgICAgICAgICA8L3Rib2R5PgogICAgICAgIDwvdGFibGU+CiAgICAgIDwvZGl2PgogICAgPC9tYWluPgogICk7Cn0K
+import { AIRLINES } from '@/lib/airlines';
+
+export const metadata = { title: 'Airline directory — SkyOwed' };
+
+export default function AirlinesPage() {
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">Airline claims directory</h1>
+      <p className="text-slate-600 mb-6">
+        Where to send your EU261 / UK261 demand letter.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead className="text-left border-b">
+            <tr><th className="py-2">IATA</th><th>Airline</th><th>Claims email</th><th>SLA (days)</th></tr>
+          </thead>
+          <tbody>
+            {AIRLINES.map(a => (
+              <tr key={a.iata} className="border-b">
+                <td className="py-2 font-mono">{a.iata}</td>
+                <td>{a.name}</td>
+                <td className="text-sky-600"><a href={`mailto:${a.claimsEmail}`}>{a.claimsEmail}</a></td>
+                <td>{a.slaDays}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}
