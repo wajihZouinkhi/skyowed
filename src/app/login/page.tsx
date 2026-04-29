@@ -5,10 +5,11 @@ import { IS_MOBILE_BUILD } from '@/lib/isMobileBuild';
 import WebOnlyNotice from '@/components/WebOnlyNotice';
 
 export default function Login() {
-  if (IS_MOBILE_BUILD) return <WebOnlyNotice feature="Sign-in" />;
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+
+  if (IS_MOBILE_BUILD) return <WebOnlyNotice feature="Sign-in" />;
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();

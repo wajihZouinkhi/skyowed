@@ -5,6 +5,7 @@ import NativeBridge from '@/components/NativeBridge';
 import BackButtonHandler from '@/components/BackButtonHandler';
 import OfflineBanner from '@/components/OfflineBanner';
 import BottomTabs from '@/components/BottomTabs';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://skyowed.app'),
@@ -47,6 +48,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <script defer data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" />
+        )}
+      </head>
       <body>
         <ThemeProvider>
           <NativeBridge />
@@ -54,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <OfflineBanner />
           <BottomTabs />
           {children}
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>

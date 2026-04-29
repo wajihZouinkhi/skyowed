@@ -4,10 +4,14 @@ import { renderLetterFR } from '@/lib/letter.fr';
 import { renderLetterDE } from '@/lib/letter.de';
 import { renderLetterES } from '@/lib/letter.es';
 import { buildPdf } from '@/lib/pdf';
+import { limit } from '@/lib/ratelimit';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for') ?? 'local';
+  const ok = await limit(ip, 'letter-pdf');
+  if (!ok) return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
   const body = (await req.json()) as LetterInput & { locale?: string };
   const locale = body.locale ?? 'en';
   const text =

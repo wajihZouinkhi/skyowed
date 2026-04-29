@@ -20,7 +20,9 @@ export default function CheckForm() {
   const [delayHours, setDelayHours] = useState(4);
   const [reason, setReason] = useState('delay');
   const [extraordinary, setExtraordinary] = useState(false);
+  const [flightNumber, setFlightNumber] = useState('');
   const [loading, setLoading] = useState(false);
+  const [lookingUp, setLookingUp] = useState(false);
   const [result, setResult] = useState<EligibilityResult | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -48,6 +50,10 @@ export default function CheckForm() {
 
       setResult(data);
 
+      if (typeof window !== 'undefined' && (window as any).plausible) {
+        (window as any).plausible('flight_check', { props: { eligible: data.eligible } });
+      }
+
       if (data.eligible) {
         await saveLocalClaim({
           id: crypto.randomUUID(),
@@ -74,6 +80,34 @@ export default function CheckForm() {
     }
   }
 
+  async function lookupFlight() {
+    if (!flightNumber || !flightDate) return;
+    setLookingUp(true); setErr(null);
+    try {
+      const res = await fetch('/api/flight-lookup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ flightNumber, date: flightDate }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Lookup failed');
+      if (data.depart) setDepart(data.depart);
+      if (data.arrive) setArrive(data.arrive);
+      if (data.actualArrival && data.scheduledDeparture) {
+        const scheduled = new Date(data.scheduledDeparture);
+        const actual = new Date(data.actualArrival);
+        const diffHours = Math.max(0, (actual.getTime() - scheduled.getTime()) / 3_600_000);
+        if (diffHours > 0) setDelayHours(Math.round(diffHours * 10) / 10);
+      }
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Lookup failed';
+      if (msg === 'lookup_disabled') setErr('Flight lookup is not configured.');
+      else setErr(msg);
+    } finally {
+      setLookingUp(false);
+    }
+  }
+
   function swap() { const a = depart; setDepart(arrive); setArrive(a); }
 
   return (
@@ -87,6 +121,16 @@ export default function CheckForm() {
       </div>
 
       <form onSubmit={submit} className="space-y-5">
+        <div>
+          <label className="label">Flight number (optional — auto-fills airports &amp; delay)</label>
+          <div className="flex gap-2">
+            <input className="field flex-1" placeholder="e.g. FR1234" value={flightNumber} onChange={e => setFlightNumber(e.target.value)} />
+            <button type="button" onClick={lookupFlight} disabled={lookingUp || !flightNumber} className="btn-primary shrink-0 text-sm">
+              {lookingUp ? 'Looking up…' : 'Look up'}
+            </button>
+          </div>
+        </div>
+
         <div className="relative grid gap-4 md:grid-cols-2">
           <AirportCombobox label="From" value={depart} onChange={setDepart} />
           <AirportCombobox label="To" value={arrive} onChange={setArrive} />
