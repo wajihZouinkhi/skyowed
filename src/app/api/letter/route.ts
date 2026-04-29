@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { checkEligibility } from '@/lib/eligibility';
 import { buildLetter, type LetterInput } from '@/lib/letter';
+import { limit } from '@/lib/ratelimit';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get('x-forwarded-for') ?? 'local';
+    const ok = await limit(ip, 'letter');
+    if (!ok) return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
     const body = (await req.json()) as LetterInput & Parameters<typeof checkEligibility>[0];
     const result = checkEligibility(body);
     if (!result.eligible) return NextResponse.json({ error: result.reason }, { status: 422 });

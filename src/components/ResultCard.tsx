@@ -184,6 +184,10 @@ export default function ResultCard({ result, depIata, arrIata, flightDate, event
         <div><div className="text-white/50">Regulation</div><div className="font-semibold">{result && 'jurisdiction' in result ? result.jurisdiction : '—'}</div></div>
         <div><div className="text-white/50">Time to claim</div><div className="font-semibold">Up to 6 years</div></div>
       </div>
+
+      <p className="relative mt-4 text-xs text-white/40 leading-relaxed">
+        SkyOwed is not a law firm and does not hold your funds. This is an informational estimate based on EU261/UK261 regulations.
+      </p>
     </div>
   );
 }
