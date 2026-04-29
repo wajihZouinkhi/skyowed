@@ -1,5 +1,9 @@
+import { IS_MOBILE_BUILD } from '@/lib/isMobileBuild';
+import WebOnlyNotice from '@/components/WebOnlyNotice';
+
 export const metadata = { title: 'Payment received — SkyOwed' };
 export default function SuccessPage() {
+  if (IS_MOBILE_BUILD) return <WebOnlyNotice feature="Payment confirmation" />;
   return (
     <main className="mx-auto max-w-2xl px-6 py-24 text-center">
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300 text-3xl">✓</div>

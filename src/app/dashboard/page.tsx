@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { IS_MOBILE_BUILD } from '@/lib/isMobileBuild';
+import WebOnlyNotice from '@/components/WebOnlyNotice';
 
 type Claim = {
   id: string;
@@ -14,6 +16,7 @@ type Claim = {
 };
 
 export default function Dashboard() {
+  if (IS_MOBILE_BUILD) return <WebOnlyNotice feature="My claims" />;
   const [email, setEmail] = useState('');
   const [claims, setClaims] = useState<Claim[]>([]);
   const [loading, setLoading] = useState(false);

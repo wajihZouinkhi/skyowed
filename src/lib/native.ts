@@ -90,3 +90,11 @@ export async function onBackButton(handler: () => boolean) {
     return () => {};
   }
 }
+
+export async function openExternal(url: string) {
+  if (!(await isNative())) { window.open(url, '_blank'); return; }
+  try {
+    const { Browser } = await import('@capacitor/browser');
+    await Browser.open({ url });
+  } catch { window.open(url, '_blank'); }
+}
